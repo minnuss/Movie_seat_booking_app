@@ -1,0 +1,137 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 10px
+  font-family: 'Roboto', sans-serif; // 'Montserrat', 'Roboto';
+}
+
+// seats design style
+%seat {
+  background-color: #444451;
+  height: 12px;
+  width: 15px;
+  margin: 3px;
+  border-radius: 10px 10px 0 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  background-color: #242333;
+  color: #fff;
+  font-size: 1.5rem;
+
+  .main__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .movie-container {
+      margin: 20px 0;
+
+      select {
+        background-color: #fff;
+        border: 0;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        margin-left: 10px;
+        padding: 5px 15px;
+        // removing the down arrow from movie option list
+        // firefox
+        -moz-appearance: none;
+        // chrome / safari
+        -webkit-appearance: none;
+        appearance: none;
+      }
+    }
+
+    .showcase {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #777;
+      list-style: none;
+
+      display: flex;
+      justify-content: space-between;
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+
+        small {
+          margin-left: 2px;
+        }
+      }
+    }
+
+    .seat-container {
+      // tilt movie screen to look little more like a 3D
+      perspective: 1000px;
+      margin-bottom: 30px;
+
+      .screen {
+        background-color: #fff;
+        height: 70px;
+        width: 100%;
+        margin: 15px 0;
+        transform: rotateX(-45deg);
+        box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+      }
+
+      .row {
+        display: flex;
+      }
+    }
+
+    p.text {
+      margin: 5px 0;
+
+      span {
+        color: #6feaf6;
+      }
+    }
+  }
+}
+
+// all seats style defined outside nesting
+.seat {
+  @extend %seat;
+}
+
+// moving first two rows left
+.seat:nth-of-type(2) {
+  margin-right: 18px;
+}
+
+// moving last two rows right
+.seat:nth-last-of-type(2) {
+  margin-left: 18px;
+}
+
+// selected only seats that are available, not occupied or in legend
+.seat-container .seat:not(.occupied):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.seat.selected {
+  background-color: #6feaf6;
+}
+
+.seat.occupied {
+  background-color: #fff;
+}
