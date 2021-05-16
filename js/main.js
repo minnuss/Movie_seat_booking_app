@@ -8,32 +8,34 @@ getDataFromLocalStorage()
 // GET DATA FROM LOCAL STORAGE
 function getDataFromLocalStorage() {
     const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'))
-    console.log(selectedSeats)
+    // console.log(selectedSeats)
 
     // set selected class again to saved seats indexes
-    selectedSeats.forEach(seatIdx => {
-        seats[seatIdx].classList.add('selected')
-    })
+    if (selectedSeats !== null && selectedSeats.length > 0) {
+        selectedSeats.forEach(seatIdx => {
+            seats[seatIdx].classList.add('selected')
+        })
 
-    // this code do the same like upper one, its from tutorial, i do not like it, to complicated to understand
-    // if (selectedSeats !== null && selectedSeats.length > 0) {
-    //     seats.forEach((seat, idx) => {
-    //         if (selectedSeats.indexOf(idx) > -1) {
-    //             seat.classList.add('selected')
-    //         }
-    //     })
-    // }
+        // this code do the same like upper one, its from tutorial, i do not like it, to complicated to understand
+        // if (selectedSeats !== null && selectedSeats.length > 0) {
+        //     seats.forEach((seat, idx) => {
+        //         if (selectedSeats.indexOf(idx) > -1) {
+        //             seat.classList.add('selected')
+        //         }
+        //     })
+        // }
 
-    // get the count of selected seats from local storage
-    const selectedSeatsCount = selectedSeats.length
-    // get the selected movie index from list option
-    const selectedMovieIndex = JSON.parse(localStorage.getItem('selectedMovieIndex'))
-    // get the selected movie price from list option
-    const selectedMoviePrice = JSON.parse(localStorage.getItem('selectedMoviePrice'))
+        // get the count of selected seats from local storage
+        const selectedSeatsCount = selectedSeats.length
+        // get the selected movie index from list option
+        const selectedMovieIndex = JSON.parse(localStorage.getItem('selectedMovieIndex'))
+        // get the selected movie price from list option
+        const selectedMoviePrice = JSON.parse(localStorage.getItem('selectedMoviePrice'))
 
-    movieSelect.selectedIndex = selectedMovieIndex
-    count.innerText = selectedSeatsCount
-    total.innerText = selectedSeatsCount * selectedMoviePrice
+        movieSelect.selectedIndex = selectedMovieIndex
+        count.innerText = selectedSeatsCount
+        total.innerText = selectedSeatsCount * selectedMoviePrice
+    }
 }
 
 // GET THE VALUE OF SELECTED MOVIE and change it from string to number
